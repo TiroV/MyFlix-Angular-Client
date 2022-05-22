@@ -122,7 +122,7 @@ export class UserRegistrationService {
       .pipe(catchError(this.handleError));
   }
 
-  // Deletes favorite movie to user's listt
+  // Deletes favorite movie to user's list
   deleteFavoriteMovies(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http
