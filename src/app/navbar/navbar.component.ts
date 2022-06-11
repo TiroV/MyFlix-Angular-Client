@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 })
 export class NavbarComponent implements OnInit {
 
+
   constructor(
     public fetchApiData: UserRegistrationService,
     public router: Router,
@@ -21,18 +22,25 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  //Navigates to the movies section
+  /**
+   * This function navigates to the movies page
+   */
   navMovies(): void {
     this.router.navigate(['movies']);
   }
 
-  //Navigates to the user's profile
+  /**
+   * This function navigates to the user's profile page 
+   */
+
   navProfile(): void {
     this.router.navigate(['profile']);
   }
 
-
-  //Signs the user out and returns them to the weclcome screen
+  /**
+   * This function signs the user out and returns them to the weclcome screen.
+   *  Clears the local storage of the user's signed-in information.
+   */
   logOut(): void {
     localStorage.clear();
     this.snackBar.open('You have been logged out.', 'Okay', {

@@ -31,7 +31,13 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   *  This is the function responsible for sending the form inputs to the backend
+   * Tells the user that they have been logged in
+   * Then sends them to the movies page
+   * @function loginUser
+   */
+
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (response) => {

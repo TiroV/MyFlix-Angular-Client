@@ -36,7 +36,12 @@ export class ProfileViewComponent implements OnInit {
     this.getFavoriteMovies();
   }
   //User Functions//
-  //Calls the API to get the user's data
+
+  /**
+   * Makes a call to the API to get the user's information.
+   * @Returns object holding user data
+   * @function getUserProfile 
+   */
   getUserProfile(): void {
     const username = localStorage.getItem('user');
     if (username) {
@@ -47,14 +52,21 @@ export class ProfileViewComponent implements OnInit {
       });
     }
   }
-  //Opens the Edit Profile Component, a small dialog box for the user to edit their profile information
+
+  /**
+   * Opens the Edit Profile Component, a small dialog box for the user to edit their profile information
+   * @function openEditProfile
+   */
   openEditProfile(): void {
     this.dialog.open(EditProfileComponent, {
       width: '500px',
       panelClass: 'edit-user-custom',
     });
   }
-  //Deletes the profile of the user currently logged in. 
+  /**
+   * Deletes the profile of the user currently logged in.
+   * @function deleteUserProfile
+   */
   deleteUserProfile(): void {
     if (confirm('Are your sure you want to delete your account? This can\'t be undone.')) {
       this.router.navigate(['welcome']).then(() => {
@@ -74,7 +86,11 @@ export class ProfileViewComponent implements OnInit {
 
   //Movie Functions //
 
-  //Gets list of favorite movies
+  /**
+   * Gets list of favorite movies
+   * @function getFavoriteMovies
+   * 
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getAllMoviesService().subscribe((resp: any) => {
       this.movies = resp;
@@ -86,7 +102,11 @@ export class ProfileViewComponent implements OnInit {
     });
     console.log(this.favoriteMovies);
   }
-  //Removes favorite movies from list
+  /**
+   * Removes favorite movies from list
+   * @function deleteFavoriteMovies
+   * @param id 
+   */
   deleteFavoriteMovies(id: string): void {
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((res: any) => {
       this.snackBar.open('Successfully removed from favorite movies.', 'OK', {
@@ -99,13 +119,13 @@ export class ProfileViewComponent implements OnInit {
   }
 
   /**
-     * function to open Synopsis or 'More Info' for specific movie
-     * @function openSynopsisDialog
-     * @param title
-     * @param imagepath
-     * @param description
-     * @module SynopsisCardComponent
-     */
+   * Function to open the synopsis dialog to get more information about a movie.
+   * @function openSynopsisDialog
+   * @param title 
+   * @param imagePath 
+   * @param description 
+   * @module SynopsisCardComponent
+   */
   openSynopsisDialog(title: string, imagePath: any, description: string): void {
     this.dialog.open(SynopsisCardComponent, {
       data: {
@@ -118,12 +138,11 @@ export class ProfileViewComponent implements OnInit {
   }
 
   /**
-   * Function to open Genre card for specific movie when clicked
-   * @function openDirectorDialog
-   * @param title
-   * @param name
-   * @param bio
-   * @param birth
+   * Function to open genre card for specific movie when clicked
+   * @param title 
+   * @param name 
+   * @param bio 
+   * @param birth 
    * @module DirectorCardComponent
    */
   openDirectorDialog(title: string, name: string, bio: string, birth: string): void {
@@ -140,10 +159,10 @@ export class ProfileViewComponent implements OnInit {
   }
 
   /**
-   * opens Genre card for specific movie when clicked
+   * Function to open the Genre card dialog box for a specific movie when clicked
    * @function openGenreDialog
-   * @param name
-   * @param description
+   * @param name 
+   * @param description 
    * @module GenreCardComponent
    */
   openGenreDialog(name: string, description: string): void {

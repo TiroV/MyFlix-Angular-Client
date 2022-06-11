@@ -78,9 +78,9 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-   * Opens the dialog to display the information from GenreCardComponent
-   * @param name {string}
-   * @param description {string}
+   * Opens the dialog to display information from the genreCardComponent
+   * @param name 
+   * @param description 
    */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
@@ -92,7 +92,12 @@ export class MovieCardComponent implements OnInit {
       panelClass: 'genre-custom'
     });
   }
-  //Movie Component, Opens the director dialog box
+  /**
+   * Movie Component, Opens the director dialog box
+   * @param name 
+   * @param bio 
+   * @param birth 
+   */
   openDirectorDialog(name: string, bio: string, birth: Date): void {
     this.dialog.open(DirectorCardComponent, {
       data: {
@@ -108,7 +113,10 @@ export class MovieCardComponent implements OnInit {
 
 
 
-  //Adds movie to favorite
+  /**
+   * Adds movies to the favorite list.
+   * @param id 
+   */
   addFavorite(id: string): void {
     console.log(id);
     this.fetchApiData.addFavoriteMovies(id).subscribe((result) => {
@@ -117,6 +125,10 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  /**
+   * Removes movies from the favorite list.
+   * @param id 
+   */
   removeFavorite(id: string): void {
     console.log(id);
     this.fetchApiData.deleteFavoriteMovies(id).subscribe((result) => {
@@ -124,7 +136,7 @@ export class MovieCardComponent implements OnInit {
       this.ngOnInit();
     })
   }
-
+  //Checks to see if the movie is in the user's favorite
   isFav(id: string): boolean {
     return this.isFaves.includes(id)
   }

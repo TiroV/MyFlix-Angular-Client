@@ -13,7 +13,7 @@ export class EditProfileComponent implements OnInit {
   user: any = {};
 
   /**
-   * Input values bound to userData
+   * Input values bound to userData.
    */
   @Input() userData = {
     Username: this.user.Username,
@@ -31,6 +31,12 @@ export class EditProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Gets the user's profile data
+   * @function getUserProfile
+   * @Returns the data of the user that is currently logged in.
+   */
+
   getUserProfile(): void {
     const user = localStorage.getItem('user');
     this.fetchApiData.getUser().subscribe((resp: any) => {
@@ -38,6 +44,14 @@ export class EditProfileComponent implements OnInit {
       console.log(this.user)
     });
   }
+
+  /**
+   *Updates the user's information in the database
+   *Shows a box to indicate that the user has been updated 
+   *Then reloads the page
+   *@function editUserProfile
+   *@returns The user's updated information
+   */
 
   editUserProfile(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((resp) => {
